@@ -1,0 +1,27 @@
+<% if params[:user_id].nil? %>
+  <div>
+    <div>
+      <%= render 'search_form' %>
+    </div>
+  </div>
+<% else %>
+  <div>
+    <div>
+      <%= render 'search_form' %>
+    </div>
+    <% if params[:user_id].empty? %>
+      <div>Flickr API Searcher is displaying latest public photos uploaded to Flickr</div>
+    <% else %>
+      <div>Flickr API Searcher is displaying public photos uploaded by <%= params[:user_id] %> </div>
+    <% end %>
+  </div>
+  <div>
+    <div>
+    <% @photos.each do |photo| %>
+      <div >
+        <img src="<%= Flickr.url_n(photo) %>"/>
+      </div>
+    <% end %>
+    </div>
+  </div>
+<% end %>
